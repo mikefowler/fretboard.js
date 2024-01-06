@@ -6,11 +6,7 @@ export {
   TetrachordLayouts
 } from './tetrachords/tetrachords';
 
-export {
-  disableStrings,
-  disableDots,
-  sliceBox
-} from './tools/tools';
+export { disableStrings, disableDots, sliceBox } from './tools/tools';
 
 export { FretboardSystem } from './fretboardSystem/FretboardSystem';
 export { Systems } from './fretboardSystem/systems/systems';

@@ -35,42 +35,45 @@ export default function tetrachords() {
     ...fretboardConfiguration,
     dotText: ({ note }) => note
   });
-  fretboard.setDots([
-    ...lowerTetrachord,
-    ...upperTetrachord
-  ])
-  .render()
-  .style({
-    fill: (dot, index) => index < 4 ? 'yellow' : 'pink'
-  });
+  fretboard
+    .setDots([...lowerTetrachord, ...upperTetrachord])
+    .render()
+    .style({
+      fill: (dot, index) => (index < 4 ? 'yellow' : 'pink')
+    });
 
   const $form = document.querySelector('.api-actions');
 
-  $form.querySelectorAll('select').forEach(
-    el => el.addEventListener('change', (event) => {
+  $form.querySelectorAll('select').forEach((el) =>
+    el.addEventListener('change', (event) => {
       const { name, value } = event.target;
       options[name] = value;
 
-      fretboard.setDots([
-        ...tetrachord({
-          root: 'E',
-          string: 5,
-          fret: 7,
-          type: options.lowerTetrachordType,
-          layout: +options.lowerTetrachordLayout
-        }),
-        ...tetrachord({
-          root: options.upperTetrachordType === TetrachordTypes.Lydian ? 'Bb' : 'B',
-          string: 4,
-          fret: options.upperTetrachordType === TetrachordTypes.Lydian ? 8 : 9,
-          type: options.upperTetrachordType,
-          layout: +options.upperTetrachordLayout
-        })
-      ])
-      .render()
-      .style({
-        fill: (dot, index) => index < 4 ? 'yellow' : 'pink'
-      });
+      fretboard
+        .setDots([
+          ...tetrachord({
+            root: 'E',
+            string: 5,
+            fret: 7,
+            type: options.lowerTetrachordType,
+            layout: +options.lowerTetrachordLayout
+          }),
+          ...tetrachord({
+            root:
+              options.upperTetrachordType === TetrachordTypes.Lydian
+                ? 'Bb'
+                : 'B',
+            string: 4,
+            fret:
+              options.upperTetrachordType === TetrachordTypes.Lydian ? 8 : 9,
+            type: options.upperTetrachordType,
+            layout: +options.upperTetrachordLayout
+          })
+        ])
+        .render()
+        .style({
+          fill: (dot, index) => (index < 4 ? 'yellow' : 'pink')
+        });
     })
   );
 }

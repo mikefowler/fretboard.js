@@ -1,6 +1,6 @@
 # Documentation - Music Tools
 
-The library includes some helpers in order to populate the fretboard with existing patterns.  
+The library includes some helpers in order to populate the fretboard with existing patterns.
 
 ## Fretboard System
 

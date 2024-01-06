@@ -6,7 +6,10 @@ function transform({
   to = { string: 1, fret: 100 },
   action = (x: Position): Position => x
 } = {}): Position[] {
-  function inSelection({ string, fret }: {
+  function inSelection({
+    string,
+    fret
+  }: {
     string: number;
     fret: number;
   }): boolean {
@@ -21,7 +24,7 @@ function transform({
     }
     return true;
   }
-  return box.map(x => inSelection(x) ? action(x) : x);
+  return box.map((x) => (inSelection(x) ? action(x) : x));
 }
 
 export function disableStrings({
@@ -53,12 +56,9 @@ export function sliceBox({
     return -1;
   });
 
-  function findIndex(key: {
-    string: number;
-    fret: number;
-  }): number {
-    return sortedBox.findIndex(({ string, fret }) =>
-      string === key.string && fret === key.fret
+  function findIndex(key: { string: number; fret: number }): number {
+    return sortedBox.findIndex(
+      ({ string, fret }) => string === key.string && fret === key.fret
     );
   }
 

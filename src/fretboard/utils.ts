@@ -58,22 +58,27 @@ export function generateFrets({
     }
     frets.push(x);
   }
-  return frets.map(x => x / frets[frets.length - 1] * 100);
+  return frets.map((x) => (x / frets[frets.length - 1]) * 100);
 }
 
-const accidentalMap: { symbol: string; replacement: string }[] = [{
-  symbol: '##',
-  replacement: 'double-sharp'
-}, {
-  symbol: 'bb',
-  replacement: 'double-flat'
-}, {
-  symbol: '#',
-  replacement: 'sharp'
-}, {
-  symbol: 'b',
-  replacement: 'flat'
-}];
+const accidentalMap: { symbol: string; replacement: string }[] = [
+  {
+    symbol: '##',
+    replacement: 'double-sharp'
+  },
+  {
+    symbol: 'bb',
+    replacement: 'double-flat'
+  },
+  {
+    symbol: '#',
+    replacement: 'sharp'
+  },
+  {
+    symbol: 'b',
+    replacement: 'flat'
+  }
+];
 
 function valueRenderer(key: string, value: string | number | boolean): string {
   if (typeof value === 'boolean') {
@@ -91,30 +96,36 @@ function valueRenderer(key: string, value: string | number | boolean): string {
   return `${value}`;
 }
 
-function classRenderer(prefix: string, key: string, value: string | number | boolean): string {
-  return [
-    'dot',
-    prefix,
-    paramCase(key),
-    valueRenderer(key, value),
-  ].filter(x => !!x).join('-');
+function classRenderer(
+  prefix: string,
+  key: string,
+  value: string | number | boolean
+): string {
+  return ['dot', prefix, paramCase(key), valueRenderer(key, value)]
+    .filter((x) => !!x)
+    .join('-');
 }
 
 export function dotClasses(dot: Position, prefix = ''): string {
   return [
     prefix ? `dot-${prefix}` : null,
     `dot-id-s${dot.string}:f${dot.fret}`,
-    ...Object.entries(dot)
-      .map(([key, value]: [string, string | Array<string>]) => {
+    ...Object.entries(dot).map(
+      ([key, value]: [string, string | Array<string>]) => {
         let valArray: string[];
         if (!(value instanceof Array)) {
           valArray = [value];
         } else {
           valArray = value;
         }
-        return valArray.map(value => classRenderer(prefix, key, value)).join(' ');
-      })
-  ].filter(x => !!x).join(' ');
+        return valArray
+          .map((value) => classRenderer(prefix, key, value))
+          .join(' ');
+      }
+    )
+  ]
+    .filter((x) => !!x)
+    .join(' ');
 }
 
 export function getDimensions({
@@ -156,7 +167,7 @@ type GetPositionParams = {
   strings: number[];
   frets: number[];
   dots: Position[];
-}
+};
 
 export const getPositionFromMouseCoords = ({
   event,
@@ -167,10 +178,9 @@ export const getPositionFromMouseCoords = ({
   frets,
   dots
 }: GetPositionParams): Position => {
-  const {
-    width: stringsGroupWidth,
-    height: stringsGroupHeight
-  } = (stringsGroup.node() as HTMLElement).getBoundingClientRect();
+  const { width: stringsGroupWidth, height: stringsGroupHeight } = (
+    stringsGroup.node() as HTMLElement
+  ).getBoundingClientRect();
   const bounds = (event.target as HTMLElement).getBoundingClientRect();
   const x = event.clientX - bounds.left;
   const y = event.clientY - bounds.top;
@@ -201,12 +211,16 @@ export const getPositionFromMouseCoords = ({
     foundFret = 0;
   }
 
-  const foundDot = dots.find(({ fret, string }) => fret === foundFret && string === foundString + 1);
-  return foundDot || {
-    string: foundString + 1,
-    fret: foundFret
-  }
-}
+  const foundDot = dots.find(
+    ({ fret, string }) => fret === foundFret && string === foundString + 1
+  );
+  return (
+    foundDot || {
+      string: foundString + 1,
+      fret: foundFret
+    }
+  );
+};
 
 export function createHoverDiv({
   bottomPadding,
@@ -214,8 +228,7 @@ export function createHoverDiv({
   fretNumbersHeight
 }: Options): HTMLDivElement {
   const hoverDiv = document.createElement('div');
-  const bottom = bottomPadding
-    + (showFretNumbers ? fretNumbersHeight : 0);
+  const bottom = bottomPadding + (showFretNumbers ? fretNumbersHeight : 0);
   hoverDiv.className = 'hoverDiv';
   hoverDiv.style.position = 'absolute';
   hoverDiv.style.top = '0';

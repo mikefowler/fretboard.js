@@ -1,4 +1,5 @@
 <!--chords.main-->
+
 This code renders an **open C major chord**:
 
 ```javascript
@@ -63,6 +64,7 @@ fretboard.renderChord('x35553', [
   { fret: 5, stringFrom: 4, stringTo: 2 }
 ]);
 ```
+
 **Note:** `stringFrom` defaults to the lowest string, and `stringTo` to the first. Pass the "human" agreed value otherwise, e.g. 2 for the open B string, or 5 for the open A (in standard guitar tuning of course).
 
 Providing chord positions by name is outside the scope of this library, as many resources already exist for that.

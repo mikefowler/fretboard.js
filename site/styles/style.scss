@@ -1,21 +1,22 @@
 @charset "utf-8";
 
-@import "~bulma/sass/utilities/_all";
-@import "~bulma/sass/base/_all";
-@import "~bulma/sass/elements/table";
-@import "~bulma/sass/elements/button";
-@import "~bulma/sass/form/shared";
-@import "~bulma/sass/form/checkbox-radio";
-@import "~bulma/sass/form/tools";
-@import "~bulma/sass/form/select";
-@import "~bulma/sass/components/navbar";
-@import "~bulma/sass/components/dropdown";
-@import "~bulma/sass/grid/_all";
-@import "~bulma/sass/layout/_all";
+@import '~bulma/sass/utilities/_all';
+@import '~bulma/sass/base/_all';
+@import '~bulma/sass/elements/table';
+@import '~bulma/sass/elements/button';
+@import '~bulma/sass/form/shared';
+@import '~bulma/sass/form/checkbox-radio';
+@import '~bulma/sass/form/tools';
+@import '~bulma/sass/form/select';
+@import '~bulma/sass/components/navbar';
+@import '~bulma/sass/components/dropdown';
+@import '~bulma/sass/grid/_all';
+@import '~bulma/sass/layout/_all';
 
-@import "./variables.scss";
+@import './variables.scss';
 
-html, body {
+html,
+body {
   font-family: 'Futura', 'Arial', sans-serif;
   font-size: 16px;
   margin: 0;
@@ -26,7 +27,7 @@ html, body {
 html {
   box-sizing: border-box;
   min-height: 100vh;
-  background-color: #D2E8F6;
+  background-color: #d2e8f6;
 }
 
 .home {
@@ -36,7 +37,8 @@ html {
 * {
   box-sizing: inherit;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     box-sizing: inherit;
   }
 }
@@ -55,7 +57,9 @@ h3 {
   margin: 2rem 0 1rem 0;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: $mainColor;
   font-weight: bold;
   scroll-margin: 5rem;
@@ -64,14 +68,14 @@ h1, h2, h3 {
 blockquote {
   line-height: 3rem;
   padding-left: 1rem;
-  background-color: bulmaRgba($mainColor, .1);
-  border-left: .5rem solid $mainColor;
+  background-color: bulmaRgba($mainColor, 0.1);
+  border-left: 0.5rem solid $mainColor;
 }
 
 .navbar-icon {
   width: 37.5px;
   height: 25px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 
   svg {
     height: 100%;
@@ -81,7 +85,7 @@ blockquote {
 .navbar {
   .version {
     font-weight: bold;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
     color: $mainColor;
   }
   .is-current {
@@ -95,7 +99,7 @@ blockquote {
   }
 
   img {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 }
 
@@ -135,7 +139,7 @@ footer.container {
 
 .hero {
   padding: 6rem 0 3rem 0;
-  background-color: #C6EDFC;
+  background-color: #c6edfc;
 
   strong {
     color: $mainColor;
@@ -159,11 +163,11 @@ footer.container {
   li {
     list-style: none;
     display: block;
-    margin: .25rem 0;
+    margin: 0.25rem 0;
   }
 
   .field {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   .select {
@@ -190,7 +194,7 @@ footer.container {
     padding: 0 0 0 2rem;
     margin-top: -2rem;
     .label {
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
   }
 
@@ -266,8 +270,11 @@ header > p {
   }
 }
 
-.code, .documentation {
-  p, ul, ol {
+.code,
+.documentation {
+  p,
+  ul,
+  ol {
     margin-bottom: 2rem;
   }
   pre {

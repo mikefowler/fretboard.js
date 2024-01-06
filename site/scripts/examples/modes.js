@@ -10,13 +10,13 @@ function modesCAGED() {
   let state = {
     box: 'C',
     root: 'E',
-    mode: 'phrygian',
+    mode: 'phrygian'
   };
 
   const fretboard = new Fretboard({
     ...fretboardConfiguration,
     el: '#fretboard-caged',
-    dotFill: ({ inBox }) => (inBox ? colors.defaultFill : colors.disabled),
+    dotFill: ({ inBox }) => (inBox ? colors.defaultFill : colors.disabled)
   });
 
   function getRoot(root, box) {
@@ -34,7 +34,7 @@ function modesCAGED() {
   function updateFretboard(newState) {
     state = {
       ...state,
-      ...newState,
+      ...newState
     };
     const { root, color } = modeMap.find(({ mode }) => mode === state.mode);
     state.root = getRoot(root, state.box);
@@ -44,14 +44,14 @@ function modesCAGED() {
         type: state.mode,
         box: {
           system: Systems.CAGED,
-          box: state.box,
-        },
+          box: state.box
+        }
       })
       .style({
         filter: { inBox: true },
         fill: ({ note }) =>
           note === state.root.match(/(.*)[\d]/)[1] ? color : 'white',
-        text: ({ note, octave }) => note + octave,
+        text: ({ note, octave }) => note + octave
       });
   }
 
@@ -63,8 +63,8 @@ function modesCAGED() {
       return `
       <label class="radio mode-${mode}">
         <input type="radio" name="mode" value="${mode}" ${
-        state.mode === mode ? 'checked' : ''
-      }>
+          state.mode === mode ? 'checked' : ''
+        }>
         ${mode}
       </label>
     `;
@@ -77,8 +77,8 @@ function modesCAGED() {
       return `
       <label class="radio box-${box}">
         <input type="radio" name="box" value="${box}" ${
-        state.box === box ? 'checked' : ''
-      }>
+          state.box === box ? 'checked' : ''
+        }>
         <strong>${box}</strong> shaped box
       </label>
     `;
@@ -116,7 +116,7 @@ function modesTNPString() {
     ...fretboardConfiguration,
     fretCount: 18,
     el: '#fretboard-3nps',
-    dotFill: ({ inBox }) => inBox ? colors.defaultFill : colors.disabled
+    dotFill: ({ inBox }) => (inBox ? colors.defaultFill : colors.disabled)
   });
 
   function getRoot(box) {
@@ -142,39 +142,47 @@ function modesTNPString() {
         box: {
           system: Systems.TNPS,
           box: state.box
-        },
+        }
       })
       .style({
         filter: { inBox: true },
         fill: ({ note }) =>
           note === state.root.match(/(.*)[\d]/)[1] ? color : colors.defaultFill,
-        text: ({ note, octave }) => note + octave,
+        text: ({ note, octave }) => note + octave
       });
   }
 
   const $modeControl = $wrapper.querySelector('.modes');
   const $boxControl = $wrapper.querySelector('.boxes');
 
-  $modeControl.innerHTML = modeMap.map(({ mode }) => {
-    return `
+  $modeControl.innerHTML = modeMap
+    .map(({ mode }) => {
+      return `
       <label class="radio mode-${mode}">
-        <input type="radio" name="mode" value="${mode}" ${state.mode === mode ? 'checked' : ''}>
+        <input type="radio" name="mode" value="${mode}" ${
+          state.mode === mode ? 'checked' : ''
+        }>
         ${mode}
       </label>
     `;
-  }).join('');
+    })
+    .join('');
 
-  $boxControl.innerHTML = [1, 2, 3, 4, 5, 6, 7].map(box => {
-    return `
+  $boxControl.innerHTML = [1, 2, 3, 4, 5, 6, 7]
+    .map((box) => {
+      return `
       <label class="radio box-${box}">
-        <input type="radio" name="box" value="${box}" ${state.box === box ? 'checked' : ''}>
+        <input type="radio" name="box" value="${box}" ${
+          state.box === box ? 'checked' : ''
+        }>
         pattern <strong>${box}</strong>
       </label>
     `;
-  }).join('');
+    })
+    .join('');
 
-  $modeControl.querySelectorAll('input').forEach(el => {
-    el.addEventListener('change', event => {
+  $modeControl.querySelectorAll('input').forEach((el) => {
+    el.addEventListener('change', (event) => {
       const { mode, root } = modeMap.find(
         ({ mode }) => mode === event.target.value
       );
@@ -182,8 +190,10 @@ function modesTNPString() {
     });
   });
 
-  $boxControl.querySelectorAll('input').forEach(el => {
-    el.addEventListener('change', event => updateFretboard({ box: +event.target.value }));
+  $boxControl.querySelectorAll('input').forEach((el) => {
+    el.addEventListener('change', (event) =>
+      updateFretboard({ box: +event.target.value })
+    );
   });
 
   updateFretboard();

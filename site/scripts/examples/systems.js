@@ -5,8 +5,8 @@ import {
   disableDots,
   FretboardSystem
 } from '../../../dist/fretboard.esm.js';
-import { fretboardConfiguration, colors } from "../config.js";
-import SystemForm from "../forms/systems.js";
+import { fretboardConfiguration, colors } from '../config.js';
+import SystemForm from '../forms/systems.js';
 
 function pentatonicSystemExample() {
   const $wrapper = document.querySelector('.fretboard-systems-pentatonic');
@@ -18,8 +18,8 @@ function pentatonicSystemExample() {
       !inBox
         ? colors.disabled
         : interval === '1P'
-        ? colors.defaultActiveFill
-        : colors.defaultFill,
+          ? colors.defaultActiveFill
+          : colors.defaultFill
   });
 
   const defaultScale = {
@@ -42,7 +42,7 @@ function pentatonicSystemExample() {
     modes: ['minor pentatonic', 'major pentatonic'],
     defaultState: {
       root: defaultScale.root,
-      mode: defaultScale.type,
+      mode: defaultScale.type
     },
     onChange: ({ mode, box, root }) => {
       fretboard.renderScale({
@@ -51,9 +51,9 @@ function pentatonicSystemExample() {
         box: {
           system: Systems.pentatonic,
           box: box[0]
-        }        
+        }
       });
-    },
+    }
   });
 }
 
@@ -67,8 +67,8 @@ function CAGEDSystemExample() {
       !inBox
         ? colors.disabled
         : interval === '1P'
-        ? colors.defaultActiveFill
-        : colors.defaultFill,
+          ? colors.defaultActiveFill
+          : colors.defaultFill
   });
 
   fretboard.renderScale({
@@ -76,8 +76,8 @@ function CAGEDSystemExample() {
     root: 'C',
     box: {
       box: 'C',
-      system: Systems.CAGED,
-    },
+      system: Systems.CAGED
+    }
   });
 
   SystemForm({
@@ -91,9 +91,9 @@ function CAGEDSystemExample() {
         box: {
           box,
           system: Systems.CAGED
-        },
+        }
       });
-    },
+    }
   });
 }
 
@@ -106,9 +106,9 @@ function TNPSSystemExample() {
     dotFill: ({ interval, inBox }) =>
       !inBox
         ? colors.disabled
-        : interval === "1P"
-        ? colors.defaultActiveFill
-        : colors.defaultFill,
+        : interval === '1P'
+          ? colors.defaultActiveFill
+          : colors.defaultFill
   });
 
   fretboard.renderScale({
@@ -117,7 +117,7 @@ function TNPSSystemExample() {
     box: {
       box: 1,
       system: Systems.TNPS
-    },
+    }
   });
 
   SystemForm({
@@ -130,10 +130,10 @@ function TNPSSystemExample() {
         root,
         box: {
           box,
-          system: Systems.TNPS,
-        },
+          system: Systems.TNPS
+        }
       });
-    },
+    }
   });
 }
 
@@ -153,22 +153,22 @@ function connectedCagedExample({ box1, box2 } = {}) {
     [
       disableDots({
         box: box1,
-        from: { string: 3, fret: 2 },
+        from: { string: 3, fret: 2 }
       }),
       disableDots({
         box: box2,
-        to: { string: 4, fret: 5 },
-      }),
+        to: { string: 4, fret: 5 }
+      })
     ].flat(),
     (dot1, dot2) => {
       return isEqual(
         {
           fret: dot1.fret,
-          string: dot1.string,
+          string: dot1.string
         },
         {
           fret: dot2.fret,
-          string: dot2.string,
+          string: dot2.string
         }
       );
     }
@@ -176,7 +176,7 @@ function connectedCagedExample({ box1, box2 } = {}) {
 
   const fretboard = new Fretboard({
     el: '#fretboard-connected-caged',
-    dotText: ({ note, disabled }) => !disabled ? note : '',
+    dotText: ({ note, disabled }) => (!disabled ? note : ''),
     dotFill: ({ interval, disabled }) => {
       if (disabled) {
         return colors.disabled;
@@ -188,7 +188,7 @@ function connectedCagedExample({ box1, box2 } = {}) {
     dotStrokeColor: ({ disabled }) =>
       disabled ? colors.disabled : colors.defaultStroke,
     ...fretboardConfiguration,
-    fretCount: 18,
+    fretCount: 18
   });
   fretboard.setDots(connectedDots).render();
 }
@@ -198,11 +198,11 @@ function connectedPentatonicExample({ box1, box2 }) {
     return isEqual(
       {
         fret: dot1.fret,
-        string: dot1.string,
+        string: dot1.string
       },
       {
         fret: dot2.fret,
-        string: dot2.string,
+        string: dot2.string
       }
     );
   });
@@ -213,7 +213,7 @@ function connectedPentatonicExample({ box1, box2 }) {
     dotFill: ({ note }) =>
       note === 'E' ? colors.intervals['1P'] : colors.defaultFill,
     ...fretboardConfiguration,
-    fretCount: 18,
+    fretCount: 18
   });
   fretboard.setDots(commonDots).render();
 }
@@ -222,11 +222,11 @@ function connectedBoxesExample() {
   const system = new FretboardSystem();
   connectedCagedExample({
     box1: system
-      .getScale({ root: 'D', box: { box: 'C', system: Systems.CAGED }})
+      .getScale({ root: 'D', box: { box: 'C', system: Systems.CAGED } })
       .filter(({ inBox }) => inBox),
     box2: system
-      .getScale({ root: 'D', box: { box: 'A', system: Systems.CAGED }})
-      .filter(({ inBox }) => inBox),
+      .getScale({ root: 'D', box: { box: 'A', system: Systems.CAGED } })
+      .filter(({ inBox }) => inBox)
   });
   connectedPentatonicExample({
     box1: system
@@ -235,8 +235,8 @@ function connectedBoxesExample() {
         type: 'minor pentatonic',
         box: {
           box: 5,
-          system: Systems.pentatonic,
-        },
+          system: Systems.pentatonic
+        }
       })
       .filter(({ inBox }) => inBox),
     box2: system
@@ -245,16 +245,16 @@ function connectedBoxesExample() {
         type: 'minor pentatonic',
         box: {
           box: 1,
-          system: Systems.pentatonic,
-        },
+          system: Systems.pentatonic
+        }
       })
-      .filter(({ inBox }) => inBox),
+      .filter(({ inBox }) => inBox)
   });
 }
 
 export default function systems() {
-    pentatonicSystemExample();
-    CAGEDSystemExample();
-    TNPSSystemExample();
-    connectedBoxesExample();
+  pentatonicSystemExample();
+  CAGEDSystemExample();
+  TNPSSystemExample();
+  connectedBoxesExample();
 }

@@ -8,12 +8,12 @@ export default function Form({
   modes = defaultModes,
   defaultState = {
     root: 'C',
-    mode: 'ionian',
-  },
+    mode: 'ionian'
+  }
 }) {
   let state = {
     ...defaultState,
-    box: boxes[0],
+    box: boxes[0]
   };
   el.innerHTML = `
     <form>
@@ -58,8 +58,8 @@ export default function Form({
               .map(
                 (x, i) => `
             <input id="${prefix}-${x}" value="${x}" name="box" type="radio" ${
-                  i === 0 && 'checked'
-                }>
+              i === 0 && 'checked'
+            }>
             <label for="${prefix}-${x}">${x}</label>
             `
               )
@@ -72,7 +72,7 @@ export default function Form({
     select.addEventListener('change', (event) => {
       state = {
         ...state,
-        [event.currentTarget.name]: event.currentTarget.value,
+        [event.currentTarget.name]: event.currentTarget.value
       };
       onChange(state);
     })

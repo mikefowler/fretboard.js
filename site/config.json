@@ -21,13 +21,7 @@
       "7M": "#96ADC8",
       "7m": "#96ADC8"
     },
-    "octaves": [
-      "#70D6FF",
-      "#FFBE0B",
-      "#E9FF70",
-      "#FF70A6",
-      "#6ae674"
-    ],
+    "octaves": ["#70D6FF", "#FFBE0B", "#E9FF70", "#FF70A6", "#6ae674"],
     "chordTypes": {
       "maj7": "#00bbf9",
       "7": "#F25116",

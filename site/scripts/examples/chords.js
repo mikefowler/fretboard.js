@@ -4,30 +4,33 @@ import { fretboardConfiguration, colors } from '../config.js';
 
 const barres = {
   F: {
-    fret: 1,
+    fret: 1
   },
   Bm: {
     fret: 2,
-    stringFrom: 5,
+    stringFrom: 5
   },
   C: [
     {
       fret: 3,
-      stringFrom: 5,
+      stringFrom: 5
     },
     {
       fret: 5,
       stringFrom: 4,
-      stringTo: 2,
-    },
+      stringTo: 2
+    }
   ],
-  'A7#9': [{
-    fret: 5,
-    stringTo: 4
-  }, {
-    fret: 8,
-    stringFrom: 2
-  }],
+  'A7#9': [
+    {
+      fret: 5,
+      stringTo: 4
+    },
+    {
+      fret: 8,
+      stringFrom: 2
+    }
+  ],
   'D6/9': {
     fret: 4,
     stringFrom: 4,
@@ -36,9 +39,8 @@ const barres = {
 };
 
 function getFretCount(chord, fretLeftPadding = 0) {
-  let normalisedChord = chord.indexOf('-') > 1
-    ? chord.split('-')
-    : chord.split('');
+  let normalisedChord =
+    chord.indexOf('-') > 1 ? chord.split('-') : chord.split('');
   const frets = normalisedChord
     .filter((x) => x !== 'x')
     .map((x) => +x)
@@ -47,7 +49,7 @@ function getFretCount(chord, fretLeftPadding = 0) {
 }
 
 export default function chords() {
-  document.querySelectorAll('.chords figure').forEach(el => {
+  document.querySelectorAll('.chords figure').forEach((el) => {
     const {
       name,
       chord,
@@ -56,7 +58,7 @@ export default function chords() {
       fretLeftPadding,
       mutedStrings,
       barred,
-      fretCount,
+      fretCount
     } = el.dataset;
 
     const fretboard = new Fretboard({
@@ -74,7 +76,7 @@ export default function chords() {
       fretNumbersMargin: 30,
       showFretNumbers: !!showFretNumbers,
       fretLeftPadding: fretLeftPadding ? +fretLeftPadding : 0,
-      crop,
+      crop
     }).renderChord(chord, barred ? barres[name] : null);
     const figCaption = document.createElement('figcaption');
     figCaption.innerHTML = `${name}<br><code>${chord}</code>`;

@@ -20,6 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tetrachords,
     highlight,
     systems,
-    documentation: () => {},
-  }[document.documentElement.dataset.section]());
+    documentation: () => {}
+  })[document.documentElement.dataset.section]();
 });

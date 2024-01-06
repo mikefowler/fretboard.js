@@ -42,16 +42,16 @@ First set the dots with `setDots` and call the `render` method to display:
 fretboard.setDots([
   {
     string: 5,
-    fret: 3,
+    fret: 3
   },
   {
     string: 4,
-    fret: 2,
+    fret: 2
   },
   {
     string: 2,
-    fret: 1,
-  },
+    fret: 1
+  }
 ]);
 
 fretboard.render();
@@ -169,7 +169,7 @@ fretboard
     // displays the note name
     text: ({ note }) => note,
     // sets the value of the fill attribute
-    fill: 'red',
+    fill: 'red'
   });
 ```
 
@@ -198,7 +198,7 @@ const fretboard = new Fretboard();
 // shows where all the C,D,E,F,G,A,B are across all strings
 fretboard.renderScale({
   type: 'major',
-  root: 'C',
+  root: 'C'
 });
 ```
 
@@ -216,8 +216,8 @@ fretboard.renderScale({
   root: 'A',
   box: {
     system: Systems.CAGED,
-    box: 'C',
-  },
+    box: 'C'
+  }
 });
 ```
 
@@ -246,7 +246,7 @@ Examples:
 // renders an open C major
 const fretboard = new Fretboard({
   fretCount: 3,
-  showFretNumbers: false,
+  showFretNumbers: false
 });
 
 fretboard.renderChord('x32010');
@@ -255,7 +255,7 @@ fretboard.renderChord('x32010');
 const fretboard = new Fretboard({
   fretCount: 3,
   showFretNumbers: true,
-  crop: true,
+  crop: true
 });
 
 fretboard.renderChord('x7678x');
@@ -270,7 +270,7 @@ Barres are supported by passing either a single `Barre` parameter, or an array o
 const fretboard = new Fretboard({
   fretCount: 3,
   showFretNumbers: false,
-  crop: true,
+  crop: true
 });
 
 fretboard.renderChord('133211', { fret: 1 });
@@ -279,7 +279,7 @@ fretboard.renderChord('133211', { fret: 1 });
 const fretboard = new Fretboard({
   fretCount: 3,
   showFretNumbers: false,
-  crop: true,
+  crop: true
 });
 
 fretboard.renderChord('x24432', { fret: 2, stringFrom: 5 });
@@ -288,12 +288,12 @@ fretboard.renderChord('x24432', { fret: 2, stringFrom: 5 });
 const fretboard = new Fretboard({
   fretCount: 3,
   showFretNumbers: false,
-  crop: true,
+  crop: true
 });
 
 fretboard.renderChord('x35553', [
   { fret: 3, stringFrom: 5 },
-  { fret: 5, stringFrom: 4, stringTo: 2 },
+  { fret: 5, stringFrom: 4, stringTo: 2 }
 ]);
 ```
 
@@ -332,7 +332,7 @@ const fretboard = new Fretboard();
 fretboard.renderScale({ root: 'G', type: 'major' });
 fretboard.highlightAreas([
   { string: 1, fret: 5 },
-  { string: 6, fret: 2 },
+  { string: 6, fret: 2 }
 ]);
 
 // highlights the E-shaped and A-shaped box of the G major scale
@@ -342,11 +342,11 @@ fretboard.renderScale({ root: 'G', type: 'major' });
 fretboard.highlightAreas(
   [
     { string: 1, fret: 5 },
-    { string: 6, fret: 2 },
+    { string: 6, fret: 2 }
   ],
   [
     { string: 1, fret: 13 },
-    { string: 6, fret: 9 },
+    { string: 6, fret: 9 }
   ]
 );
 ```
@@ -385,7 +385,7 @@ One can pass a custom tuning as an array of notes, e.g.:
 
 ```javascript
 const fretboard = new Fretboard({
-  tuning: ['D2', 'G2', 'D3', 'G3', 'B3', 'D4'],
+  tuning: ['D2', 'G2', 'D3', 'G3', 'B3', 'D4']
 });
 ```
 

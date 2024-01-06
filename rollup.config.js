@@ -9,29 +9,29 @@ export default [
       name: 'fretboard',
       file: pkg.browser,
       format: 'umd',
-      sourcemap: true,
+      sourcemap: true
     },
     plugins: [
       resolve(),
       typescript({
-        typescript: require('typescript'),
-      }),
-    ],
+        typescript: require('typescript')
+      })
+    ]
   },
   {
     input: 'src/index.ts',
     plugins: [
       typescript({
-        typescript: require('typescript'),
-      }),
+        typescript: require('typescript')
+      })
     ],
     external: [
       ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {})
     ],
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },
-      { file: pkg.module, format: 'es', sourcemap: true },
-    ],
-  },
+      { file: pkg.module, format: 'es', sourcemap: true }
+    ]
+  }
 ];

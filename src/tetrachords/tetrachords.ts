@@ -23,7 +23,7 @@ const Tetrachords = {
   [TetrachordTypes.Phrygian]: ['m2', 'M2', 'M2'],
   [TetrachordTypes.Harmonic]: ['m2', 'A2', 'm2'],
   [TetrachordTypes.Lydian]: ['M2', 'M2', 'M2']
-}
+};
 
 type TetrachordArgs = {
   root: string;
@@ -33,30 +33,28 @@ type TetrachordArgs = {
   fret: number;
 };
 
-export function tetrachord({
-  root,
-  type,
-  layout,
-  string,
-  fret
-}: TetrachordArgs = {
-  root: 'E',
-  type: TetrachordTypes.Major,
-  layout: TetrachordLayouts.Linear,
-  string: 6,
-  fret: 0
-}): Position[] {
+export function tetrachord(
+  { root, type, layout, string, fret }: TetrachordArgs = {
+    root: 'E',
+    type: TetrachordTypes.Major,
+    layout: TetrachordLayouts.Linear,
+    string: 6,
+    fret: 0
+  }
+): Position[] {
   const tetrachord = Tetrachords[type];
-  const pattern = [{
-    string,
-    fret,
-    note: root
-  }];
+  const pattern = [
+    {
+      string,
+      fret,
+      note: root
+    }
+  ];
 
   let partial = 0;
   let currentNote = root;
   if (layout === TetrachordLayouts.Linear) {
-    tetrachord.forEach(x => {
+    tetrachord.forEach((x) => {
       const { semitones } = getInterval(x);
       currentNote = transpose(currentNote, x);
       partial += semitones;
@@ -70,13 +68,15 @@ export function tetrachord({
   }
 
   if (string === 1) {
-    throw new Error('Cannot split a tetrachord over two strings if starting on the first one');
+    throw new Error(
+      'Cannot split a tetrachord over two strings if starting on the first one'
+    );
   }
 
   let currentString = string;
 
   const splitIndex = ((): number => {
-    switch(layout) {
+    switch (layout) {
       case TetrachordLayouts.ThreePlusOne:
         return 2;
       case TetrachordLayouts.TwoPlusTwo:
@@ -91,9 +91,7 @@ export function tetrachord({
     currentNote = transpose(currentNote, x);
     if (i === splitIndex) {
       currentString -= 1;
-      partial = currentString === 2
-        ? partial - 4
-        : partial - 5;
+      partial = currentString === 2 ? partial - 4 : partial - 5;
     }
     partial += semitones;
 
